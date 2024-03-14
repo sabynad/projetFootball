@@ -65,6 +65,10 @@ class Joueur
     #[ORM\Column]
     private ?int $penaltyArrete = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?equipe $equipe = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -270,6 +274,18 @@ class Joueur
     public function setPenaltyArrete(int $penaltyArrete): static
     {
         $this->penaltyArrete = $penaltyArrete;
+
+        return $this;
+    }
+
+    public function getEquipe(): ?equipe
+    {
+        return $this->equipe;
+    }
+
+    public function setEquipe(?equipe $equipe): static
+    {
+        $this->equipe = $equipe;
 
         return $this;
     }
