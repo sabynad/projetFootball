@@ -11,7 +11,7 @@ class Opposition
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name:'Id_opposition')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -28,6 +28,14 @@ class Opposition
 
     #[ORM\Column]
     private ?int $points = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Equipe $id_equipe = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Equipe $id_equipe_1 = null;
 
     public function getId(): ?int
     {
@@ -90,6 +98,30 @@ class Opposition
     public function setPoints(int $points): static
     {
         $this->points = $points;
+
+        return $this;
+    }
+
+    public function getIdEquipe(): ?Equipe
+    {
+        return $this->id_equipe;
+    }
+
+    public function setIdEquipe(?Equipe $id_equipe): static
+    {
+        $this->id_equipe = $id_equipe;
+
+        return $this;
+    }
+
+    public function getIdEquipe1(): ?Equipe
+    {
+        return $this->id_equipe_1;
+    }
+
+    public function setIdEquipe1(?Equipe $id_equipe_1): static
+    {
+        $this->id_equipe_1 = $id_equipe_1;
 
         return $this;
     }
