@@ -16,8 +16,8 @@ class Entrainer
     #[ORM\Column(length: 255)]
     private ?string $statut = null;
 
-    #[ORM\Column]
-    private ?int $saison = null;
+    #[ORM\Column(length: 255)]
+    private ?string $saison = null;
 
     public function getId(): ?int
     {
@@ -36,12 +36,12 @@ class Entrainer
         return $this;
     }
 
-    public function getSaison(): ?int
+    public function getSaison(): ?string
     {
         return $this->saison;
     }
 
-    public function setSaison(int $saison): static
+    public function setSaison(string $saison): static
     {
         $this->saison = $saison;
 
