@@ -23,6 +23,14 @@ class Article
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateArticle = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?user $user = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?sousCategorie $sousCategorie = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +68,30 @@ class Article
     public function setDateArticle(\DateTimeInterface $dateArticle): static
     {
         $this->dateArticle = $dateArticle;
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSousCategorie(): ?sousCategorie
+    {
+        return $this->sousCategorie;
+    }
+
+    public function setSousCategorie(?sousCategorie $sousCategorie): static
+    {
+        $this->sousCategorie = $sousCategorie;
 
         return $this;
     }
