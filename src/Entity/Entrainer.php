@@ -21,11 +21,11 @@ class Entrainer
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?equipe $equipe = null;
+    private ?Equipe $equipe = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?user $user = null;
+    #[ORM\ManyToOne(inversedBy: 'entrainers')]
+    private ?User $User = null;
+
 
     public function getId(): ?int
     {
@@ -56,27 +56,29 @@ class Entrainer
         return $this;
     }
 
-    public function getEquipe(): ?equipe
+    public function getEquipe(): ?Equipe
     {
         return $this->equipe;
     }
 
-    public function setEquipe(?equipe $equipe): static
+    public function setEquipe(?Equipe $equipe): static
     {
         $this->equipe = $equipe;
 
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
-        return $this->user;
+        return $this->User;
     }
 
-    public function setUser(?user $user): static
+    public function setUser(?User $User): static
     {
-        $this->user = $user;
+        $this->User = $User;
 
         return $this;
     }
+
+   
 }

@@ -3,12 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -39,6 +43,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $ville = null;
+
+    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'User')]
+    private Collection $articles;
+
+    #[ORM\OneToMany(targetEntity: Entrainer::class, mappedBy: 'User')]
+    private Collection $entrainers;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+        $this->entrainers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -147,6 +163,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVille(string $ville): static
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): static
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+            $article->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): static
+    {
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getUser() === $this) {
+                $article->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Entrainer>
+     */
+    public function getEntrainers(): Collection
+    {
+        return $this->entrainers;
+    }
+
+    public function addEntrainer(Entrainer $entrainer): static
+    {
+        if (!$this->entrainers->contains($entrainer)) {
+            $this->entrainers->add($entrainer);
+            $entrainer->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntrainer(Entrainer $entrainer): static
+    {
+        if ($this->entrainers->removeElement($entrainer)) {
+            // set the owning side to null (unless already changed)
+            if ($entrainer->getUser() === $this) {
+                $entrainer->setUser(null);
+            }
+        }
 
         return $this;
     }
