@@ -41,33 +41,33 @@ class Joueur
     #[ORM\Column]
     private ?int $matchJoue = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $nbrPasse = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $nbrPasseDecisif = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $nbrTir = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $nbrBut = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $arretGardien = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $butEncaisse = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $penaltyDispute = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $penaltyArrete = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?equipe $equipe = null;
+    private ?Equipe $equipe = null;
 
     public function getId(): ?int
     {
@@ -278,12 +278,12 @@ class Joueur
         return $this;
     }
 
-    public function getEquipe(): ?equipe
+    public function getEquipe(): ?Equipe
     {
         return $this->equipe;
     }
 
-    public function setEquipe(?equipe $equipe): static
+    public function setEquipe(?Equipe $equipe): static
     {
         $this->equipe = $equipe;
 
