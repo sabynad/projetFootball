@@ -11,7 +11,7 @@ class Joueur
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: "id_joueur")]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -66,7 +66,7 @@ class Joueur
     private ?int $penaltyArrete = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, name:'id_equipe', referencedColumnName:'id_equipe')]
     private ?Equipe $equipe = null;
 
     public function getId(): ?int

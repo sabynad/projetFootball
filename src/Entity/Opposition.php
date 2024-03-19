@@ -11,7 +11,7 @@ class Opposition
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name:'Id_opposition')]
+    #[ORM\Column(name: "id_opposition")]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -30,11 +30,11 @@ class Opposition
     private ?int $points = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, name:'id_equipe', referencedColumnName:'id_equipe')]
     private ?Equipe $id_equipe = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, name:'id_equipe_1', referencedColumnName:'id_equipe')]
     private ?Equipe $id_equipe_1 = null;
 
     public function getId(): ?int

@@ -11,7 +11,7 @@ class SousCategorie
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: "id_sous_categorie")]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -21,7 +21,7 @@ class SousCategorie
     private ?string $description = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, name:'id_categorie', referencedColumnName:'id_categorie')]
     private ?Categorie $categorie = null;
 
     public function getId(): ?int

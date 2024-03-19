@@ -51,7 +51,7 @@ class JoueurType extends AbstractType
             ])
             ->add('equipe', EntityType::class, [
                 'class' => Equipe::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
             ])
         ;
     }

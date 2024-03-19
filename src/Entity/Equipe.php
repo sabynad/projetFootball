@@ -10,7 +10,7 @@ class Equipe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: "id_equipe")]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]

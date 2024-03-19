@@ -17,7 +17,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: "id_user")]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
@@ -44,17 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $ville = null;
 
-    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'User')]
-    private Collection $articles;
-
-    #[ORM\OneToMany(targetEntity: Entrainer::class, mappedBy: 'User')]
-    private Collection $entrainers;
-
-    public function __construct()
-    {
-        $this->articles = new ArrayCollection();
-        $this->entrainers = new ArrayCollection();
-    }
+    
 
     public function getId(): ?int
     {
@@ -167,63 +157,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Article>
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
 
-    public function addArticle(Article $article): static
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles->add($article);
-            $article->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): static
-    {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getUser() === $this) {
-                $article->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Entrainer>
-     */
-    public function getEntrainers(): Collection
-    {
-        return $this->entrainers;
-    }
-
-    public function addEntrainer(Entrainer $entrainer): static
-    {
-        if (!$this->entrainers->contains($entrainer)) {
-            $this->entrainers->add($entrainer);
-            $entrainer->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEntrainer(Entrainer $entrainer): static
-    {
-        if ($this->entrainers->removeElement($entrainer)) {
-            // set the owning side to null (unless already changed)
-            if ($entrainer->getUser() === $this) {
-                $entrainer->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 }

@@ -10,7 +10,7 @@ class Entrainer
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: "id_entrainer")]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -20,12 +20,14 @@ class Entrainer
     private ?string $saison = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, name:'id_equipe', referencedColumnName:'id_equipe')]
     private ?Equipe $equipe = null;
 
-    #[ORM\ManyToOne(inversedBy: 'entrainers')]
-    private ?User $User = null;
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false, name:'id_user', referencedColumnName:'id_user')]
+    private ?User $user = null;
 
+    
 
     public function getId(): ?int
     {
@@ -70,15 +72,17 @@ class Entrainer
 
     public function getUser(): ?User
     {
-        return $this->User;
+        return $this->user;
     }
 
-    public function setUser(?User $User): static
+    public function setUser(?User $user): static
     {
-        $this->User = $User;
+        $this->user = $user;
 
         return $this;
     }
+
+    
 
    
 }
