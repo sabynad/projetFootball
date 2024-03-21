@@ -6,6 +6,7 @@ use App\Entity\Equipe;
 use App\Entity\Joueur;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,7 +21,15 @@ class JoueurType extends AbstractType
                 'widget' => 'single_text',
             ])
             ->add('numero')
-            ->add('poste')
+            ->add('poste', ChoiceType::class,[
+                'choices' => [
+                    'Attaquants' => 'Attaquant',
+                    'Milieux' => 'Milieux',
+                    'Défenseurs' => 'Défenseurs',
+                    'Gardiens' => 'Gardien',
+                ],
+            ])
+
             ->add('numeroLicence')
             ->add('cartonJaune')
             ->add('cartonRouge')

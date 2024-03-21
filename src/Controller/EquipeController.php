@@ -5,11 +5,15 @@ namespace App\Controller;
 use App\Entity\Equipe;
 use App\Form\EquipeType;
 use App\Repository\EquipeRepository;
+use App\Entity\Opposition;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+
+
+
 
 #[Route('/equipe')]
 class EquipeController extends AbstractController
@@ -77,5 +81,9 @@ class EquipeController extends AbstractController
         }
 
         return $this->redirectToRoute('app_equipe_index', [], Response::HTTP_SEE_OTHER);
+
     }
+
+    
 }
+

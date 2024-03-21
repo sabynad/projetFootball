@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Opposition{% endblock %}
+
+{% block body %}
+    <h1>Create new Opposition</h1>
+
+    {{ include('opposition/_form.html.twig') }}
+
+    <a href="{{ path('app_opposition_index') }}">Retour à la liste</a>
+{% endblock %}

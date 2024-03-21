@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Opposition{% endblock %}
+
+{% block body %}
+    <h1>Opposition</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ opposition.id }}</td>
+            </tr>
+            
+            <tr>
+                <th>Dates</th>
+                <td>{{ opposition.dates ? opposition.dates|date('Y-m-d') : '' }}</td>
+            </tr>
+           
+            <tr>
+                <th>Scores</th>
+                <td>{{ opposition.scoreEquipe }}</td>
+            </tr>
+            <tr>
+                <th>Scores</th>
+                <td>{{ opposition.scoreEquipe1 }}</td>
+            </tr>
+            <tr>
+                <th>Scores classement</th>
+                <td>{{ opposition.scoreClassement }}</td>
+            </tr>
+            <tr>
+                <th>Scores classement</th>
+                <td>{{ opposition.scoreClassement1 }}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_opposition_index') }}">back to list</a>
+
+    <a href="{{ path('app_opposition_edit', {'id': opposition.id}) }}">edit</a>
+
+    {{ include('opposition/_delete_form.html.twig') }}
+{% endblock %}

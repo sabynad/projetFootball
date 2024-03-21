@@ -14,20 +14,24 @@ class Opposition
     #[ORM\Column(name: "id_opposition")]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $matchs = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dates = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $resultats = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $scores = null;
+    private ?string $scoreEquipe = null;
 
-    #[ORM\Column]
-    private ?int $points = null;
+    #[ORM\Column(length: 255)]
+    private ?string $scoreEquipe1 = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $scoreClassement = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $scoreClassement1 = null;
+
+
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false, name:'id_equipe', referencedColumnName:'id_equipe')]
@@ -42,17 +46,6 @@ class Opposition
         return $this->id;
     }
 
-    public function getMatchs(): ?string
-    {
-        return $this->matchs;
-    }
-
-    public function setMatchs(string $matchs): static
-    {
-        $this->matchs = $matchs;
-
-        return $this;
-    }
 
     public function getDates(): ?\DateTimeInterface
     {
@@ -66,41 +59,53 @@ class Opposition
         return $this;
     }
 
-    public function getResultats(): ?string
+
+    public function getScoreEquipe(): ?string
     {
-        return $this->resultats;
+        return $this->scoreEquipe;
     }
 
-    public function setResultats(string $resultats): static
+    public function setScoreEquipe(string $scoreEquipe): static
     {
-        $this->resultats = $resultats;
+        $this->scoreEquipe = $scoreEquipe;
+
+        return $this;
+    }
+    public function getScoreEquipe1(): ?string
+    {
+        return $this->scoreEquipe1;
+    }
+
+    public function setScoreEquipe1(string $scoreEquipe1): static
+    {
+        $this->scoreEquipe1 = $scoreEquipe1;
+
+        return $this;
+    }
+    public function getScoreClassement(): ?string
+    {
+        return $this->scoreClassement;
+    }
+
+    public function setScoreClassement(string $scoreClassement): static
+    {
+        $this->scoreClassement = $scoreClassement;
+
+        return $this;
+    }
+    public function getScoreClassement1(): ?string
+    {
+        return $this->scoreClassement1;
+    }
+
+    public function setScoreClassement1(string $scoreClassement1): static
+    {
+        $this->scoreClassement1 = $scoreClassement1;
 
         return $this;
     }
 
-    public function getScores(): ?string
-    {
-        return $this->scores;
-    }
 
-    public function setScores(string $scores): static
-    {
-        $this->scores = $scores;
-
-        return $this;
-    }
-
-    public function getPoints(): ?int
-    {
-        return $this->points;
-    }
-
-    public function setPoints(int $points): static
-    {
-        $this->points = $points;
-
-        return $this;
-    }
 
     public function getIdEquipe(): ?Equipe
     {

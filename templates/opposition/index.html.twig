@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Opposition index{% endblock %}
+
+{% block body %}
+    <h1>Opposition index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dates</th>
+                <th>Equipe</th>
+                <th>Equipe1</th>
+                <th>Score equipe</th>
+                <th>Score equipe 1</th>
+                <th>Score classement</th>
+                <th>Score classement 1</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for opposition in oppositions %}
+            <tr>
+            {# {{ dump(opposition) }} #}
+                <td>{{ opposition.id }}</td>
+                <td>{{ opposition.dates ? opposition.dates|date('Y-m-d') : '' }}</td>
+                <td>{{ opposition.idequipe.nom }}</td>
+                <td>{{ opposition.idequipe1.nom }}</td>
+                <td>{{ opposition.scoreEquipe }}</td>
+                <td>{{ opposition.scoreEquipe1 }}</td>
+                <td>{{ opposition.scoreClassement }}</td>
+                <td>{{ opposition.scoreClassement1 }}</td>
+                <td>
+                    <a href="{{ path('app_opposition_show', {'id': opposition.id}) }}">show</a>
+                    <a href="{{ path('app_opposition_edit', {'id': opposition.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_opposition_new') }}">Create new</a>
+
+
+{% endblock %}
