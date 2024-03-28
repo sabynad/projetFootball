@@ -135,7 +135,7 @@ class Equipe
     /**
      * @return Collection<int, Opposition>
      */
-    public function getOpposition(): Collection
+    public function getOppositions(): Collection
     {
         return $this->oppositions;
     }
