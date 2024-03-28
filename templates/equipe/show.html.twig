@@ -4,17 +4,22 @@
 
 {% block body %}
     <h1>Equipe</h1>
+    {{ dump(equipe) }}
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ equipe.id }}</td>
-            </tr>
-            <tr>
                 <th>Nom</th>
                 <td>{{ equipe.nom }}</td>
             </tr>
+            <tr>
+                <th>Logo</th>
+                <td> <img style="width: 200px; " class="rounded-circle" src="{{ vich_uploader_asset(equipe, 'imageFile') }}"</td>
+            </tr>
+            {# <tr>
+                <th>Id</th>
+                <td>{{ equipe.id }}</td>
+            </tr> #}
             <tr>
                 <th>Categorie</th>
                 <td>{{ equipe.categorie }}</td>
@@ -24,9 +29,10 @@
                 <td>{{ equipe.championnat }}</td>
             </tr>
             <tr>
-                <th>Logo</th>
-                <td>{{ equipe.logo }}</td>
+                <th>Nombre de matchs</th>
+                <td>{{ equipe.nombreoppositions }}</td>
             </tr>
+            
         </tbody>
     </table>
 

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Equipe;
+
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,6 +21,24 @@ class EquipeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Equipe::class);
     }
+
+    // récupération des totaux des scores classement de toutes les équipes qui s'opposent
+    // -----------------------------------------------------------------------------------
+    // public function getTotalPointsByEquipe(): array
+    // {
+    //     $entityManager = $this->getEntityManager();
+    //     $query = $entityManager->createQuery('
+    //     SELECT id_equipe, 
+    //     SUM(score_classement) AS score_equipe,
+    //     SUM(score_classement1) AS score_equipe1 
+    //     FROM opposition GROUP BY id_equipe;
+    //     ');
+
+
+    //     return $query->getResult();
+    // }
+
+  
 
     //    /**
     //     * @return Equipe[] Returns an array of Equipe objects
@@ -45,4 +64,8 @@ class EquipeRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+
+
+
 }

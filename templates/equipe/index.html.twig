@@ -12,6 +12,7 @@
                 <th>Nom</th>
                 <th>Categorie</th>
                 <th>Championnat</th>
+                <th>Total points</th>
                 <th>Logo</th>
                 <th>actions</th>
             </tr>
@@ -19,11 +20,14 @@
         <tbody>
         {% for equipe in equipes %}
             <tr>
+            {# {{ dump(equipe) }} #}
                 <td>{{ equipe.id }}</td>
                 <td>{{ equipe.nom }}</td>
                 <td>{{ equipe.categorie }}</td>
                 <td>{{ equipe.championnat }}</td>
-                <td>{{ equipe.logo }}</td>
+                <td>{{ equipe.totalPoint }}</td>
+                               
+                <td> <img style="width: 120px; " class="rounded-circle" src="{{ vich_uploader_asset(equipe, 'imageFile') }}"</td>
                 <td>
                     <a href="{{ path('app_equipe_show', {'id': equipe.id}) }}">show</a>
                     <a href="{{ path('app_equipe_edit', {'id': equipe.id}) }}">edit</a>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Equipe;
 use App\Entity\Opposition;
 use App\Form\OppositionType;
 use App\Repository\EquipeRepository;
@@ -15,6 +15,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/opposition')]
 class OppositionController extends AbstractController
 {
+    private $entityManager;
+
     #[Route('/', name: 'app_opposition_index', methods: ['GET'])]
     public function index(OppositionRepository $oppositionRepository): Response
     {
@@ -29,6 +31,7 @@ class OppositionController extends AbstractController
         $opposition = new Opposition();
         $form = $this->createForm(OppositionType::class, $opposition);
         $form->handleRequest($request);
+        // $this->entityManager = $entityManager;
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($opposition);
@@ -66,9 +69,10 @@ class OppositionController extends AbstractController
         $form = $this->createForm(OppositionType::class, $opposition);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
+ 
             return $this->redirectToRoute('app_opposition_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -89,5 +93,6 @@ class OppositionController extends AbstractController
         return $this->redirectToRoute('app_opposition_index', [], Response::HTTP_SEE_OTHER);
     }
 
-   
+
+
 }

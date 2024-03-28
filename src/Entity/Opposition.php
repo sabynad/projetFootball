@@ -33,11 +33,11 @@ class Opposition
 
 
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'oppositions')]
     #[ORM\JoinColumn(nullable: false, name:'id_equipe', referencedColumnName:'id_equipe')]
     private ?Equipe $id_equipe = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'oppositions')]
     #[ORM\JoinColumn(nullable: false, name:'id_equipe_1', referencedColumnName:'id_equipe')]
     private ?Equipe $id_equipe_1 = null;
 
